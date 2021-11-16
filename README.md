@@ -1,24 +1,54 @@
-# README
+### Backend Coding Exercise
+**Comments**
+- "Your program should also accept a “Bill me on” date and a dollar amount."
+  - Not sure if the requirement is to implement a background work that would process the transaction on the bill me on date. 
+- "Write an audit function to show payouts and transactions that make up a given payout."
+  - A given payout it made up of transactions but not other payouts.
+---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### Installation
 
-Things you may want to cover:
+- Bundle
 
-* Ruby version
+```ruby
+bundle install
+```
 
-* System dependencies
+- Yarn
+  - node version 14 was used 
+```ruby
+yarn install
+```
 
-* Configuration
+- Create database, migrate and seed
 
-* Database creation
+```ruby
+rails db:create
+rails db:migrate
+rails db:seed
+```
 
-* Database initialization
+#### Running
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+```ruby
+rails server
+```
 
-* Deployment instructions
+[Localhost](http://localhost:3000)
 
-* ...
+
+#### Testing
+
+
+- Seed database
+
+```ruby
+rails db:seed RAILS_ENV=test
+```
+
+- run test
+
+```ruby
+rspec
+```
