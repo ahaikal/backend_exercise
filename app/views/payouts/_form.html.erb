@@ -1,0 +1,32 @@
+<%= form_with(model: @payout, local: true, class: "form-horizontal m-5") do |form| %>
+  <% if @payout.errors.any? %>
+  <%= errors_for(@payout) %>
+  <% end %>
+  <div class="row">
+      <div class="col-md-12">
+          <div>
+              <div class="card-default card">
+                  <div class="card-body">
+                    <fieldset>
+                        <div class="position-relative row form-group">
+                            <%= form.label :merchant_id, class: 'col-md-3 col-form-label' %>
+                            <div class="col-md-9">
+                                <%= form.collection_select :merchant_id, Merchant.all, :id, :name, {include_blank: false}, {class: "form-control"} %>
+                            </div>
+                        </div>
+                    </fieldset>
+                  </div>
+                  <div class="card-footer">
+                      <div class="float-right">
+                          <%= form.submit 'Submit', class: "btn btn-lg btn-primary" %>
+                          <%= link_to t('back'), root_path, class: "btn btn-lg btn-secondary", role: "button" %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<% end %>
+<div class="footer">
+  <%= link_to "Menu" , root_path %>
+</div>

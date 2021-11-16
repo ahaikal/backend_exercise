@@ -1,0 +1,114 @@
+<%= form_with(model: @payment, local: true, class: "form-horizontal m-5") do |form| %>
+  <% if @payment.errors.any? %>
+  <%= errors_for(@payment) %>
+  <% end %>
+  <div class="row">
+      <div class="col-md-12">
+          <div>
+              <div class="card-default card">
+                  <div class="card-body">
+                      <fieldset>
+                          <div class="position-relative row form-group">
+                              <%= form.label :payment_type, class: 'col-md-3 col-form-label' %>
+                              <div class="col-md-9">
+                                  <%= form.select :payment_type, ['Card', 'Bank'],{},{ class: "form-select cardselect"} %>
+                              </div>
+                          </div>
+                      </fieldset>
+                      <fieldset>
+                          <div class="position-relative row form-group">
+                              <%= form.label :merchant_id, class: 'col-md-3 col-form-label' %>
+                              <div class="col-md-9">
+                                  <%= form.collection_select :merchant_id, Merchant.all, :id, :name, {include_blank: false}, {class: "form-control"} %>
+                              </div>
+                          </div>
+                      </fieldset>
+                      <fieldset>
+                          <div class="position-relative row form-group">
+                              <%= form.label :amount_cents, class: 'col-md-3 col-form-label' %>
+                              <div class="col-md-9">
+                                  <%= form.text_field :amount_cents, placeholder: '1,234.23', maxlength: 15, class: "form-control maskmoney" %>
+                              </div>
+                          </div>
+                      </fieldset>
+                      <fieldset>
+                          <div class="position-relative row form-group">
+                              <%= form.label :bill_me_on, class: 'col-md-3 col-form-label' %>
+                              <div class="col-md-9">
+                                  <%= form.text_field :bill_me_on, class: "form-control", id: 'datepicker' %>
+                              </div>
+                          </div>
+                      </fieldset>
+                      <div class="card_fields">
+                          <fieldset>
+                              <div class="position-relative row form-group">
+                                  <%= form.label :card_number, class: 'col-md-3 col-form-label' %>
+                                  <div class="col-md-9">
+                                      <%= form.text_field :card_number, maxlength: '16', placeholder: '4242424242424242', class: "form-control" %>
+                                  </div>
+                              </div>
+                          </fieldset>
+                          <fieldset>
+                              <div class="position-relative row form-group">
+                                  <div class="col-md-4">
+                                      <%= form.label :exp_month, class: 'col-md-3 col-form-label' %>
+                                      <div class="col-md-9">
+                                          <%= form.text_field :exp_month, maxlength: '2', placeholder: '08', class: "form-control" %>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <%= form.label :exp_year, class: 'col-md-3 col-form-label' %>
+                                      <div class="col-md-9">
+                                          <%= form.text_field :exp_year, maxlength: '4', placeholder: '2025', class: "form-control" %>
+                                      </div>
+                                  </div>
+                          </fieldset>
+                          <fieldset>
+                              <div class="position-relative row form-group">
+                                  <div class="col-md-4">
+                                      <%= form.label :cvc, class: 'col-md-3 col-form-label' %>
+                                      <div class="col-md-9">
+                                          <%= form.text_field :cvc, maxlength: '3', placeholder: '121', class: "form-control" %>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <%= form.label :billing_zip, class: 'col-md-3 col-form-label' %>
+                                      <div class="col-md-9">
+                                          <%= form.text_field :billing_zip, maxlength: '7', placeholder: '12345', class: "form-control" %>
+                                      </div>
+                                  </div>
+                          </fieldset>
+                      </div>
+                      <div class="bank_fields" style="display: none;">
+                          <fieldset>
+                              <div class="position-relative row form-group">
+                                  <%= form.label :account_number, class: 'col-md-3 col-form-label' %>
+                                  <div class="col-md-9">
+                                      <%= form.text_field :account_number, class: "form-control" %>
+                                  </div>
+                              </div>
+                          </fieldset>
+                          <fieldset>
+                              <div class="position-relative row form-group">
+                                  <%= form.label :routing_number, class: 'col-md-3 col-form-label' %>
+                                  <div class="col-md-9">
+                                      <%= form.text_field :routing_number, class: "form-control" %>
+                                  </div>
+                              </div>
+                          </fieldset>
+                      </div>
+                  </div>
+                  <div class="card-footer">
+                      <div class="float-right">
+                          <%= form.submit 'Submit', class: "btn btn-lg btn-primary" %>
+                          <%= link_to 'Back', root_path, class: "btn btn-lg btn-secondary", role: "button" %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<% end %>
+<div class="footer">
+  <%= link_to "Menu" , root_path %>
+</div>

@@ -1,0 +1,30 @@
+<h1>Transactions</h1>
+<%= form_tag(transactions_path, method: :get) do %>
+  <p> Select a Date </p>
+  <%= text_field_tag(:search, params[:search], id: 'datepicker') %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Bill Me On</th>
+      <th>Merchant</th>
+      <th>Payment Type</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+    <% @transactions.each do |txn| %>
+      <tr>
+        <td><%= humanized_money_with_symbol txn.amount_cents%></td>
+        <td><%= txn.bill_me_on&.strftime("%m/%d/%Y")%></td>
+        <td><%= txn.merchant.name%></td>
+        <td><%= txn.payment_source.payment_type%></td>
+      </tr>
+    <% end %>
+</table>
+<div class="footer">
+  <%= link_to "Menu" , root_path %>
+</div>

@@ -1,0 +1,25 @@
+<h1>Payouts</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Payout Amount</th>
+      <th>Fee Charged</th>
+      <th>Merchant</th>
+      <th>Transactions</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+    <% @payouts.each do |payout| %>
+      <tr>
+        <td><%= humanized_money_with_symbol payout.amount_cents%></td>
+        <td><%= humanized_money_with_symbol payout.fee_charged_cents%></td>
+        <td><%= payout.merchant.name%></td>
+        <td><%= link_to "Link", payout_transactions_path(payout_id: payout.id)%></td>
+      </tr>
+    <% end %>
+</table>
+<div class="footer">
+  <%= link_to "Menu" , root_path %>
+</div>
