@@ -1,7 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+CSV.foreach(Rails.root.join('db/data/routing_numbers.csv'), headers: false, :quote_char => "|") do |row|
+  RoutingNumber.create(number: row[1], bank_name: row[2]) 
+end
+
+movies = Merchant.create([{ name: 'Merchant 1' }, { name: 'Merchant 2' }, { name: 'Merchant 3' }])
