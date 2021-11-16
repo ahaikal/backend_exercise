@@ -44,6 +44,7 @@ rails server
 - Seed database
 
 ```ruby
+rails db:test:prepare
 rails db:seed RAILS_ENV=test
 ```
 
